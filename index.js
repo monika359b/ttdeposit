@@ -36,9 +36,18 @@ let minABI = [
    ];
 
 app.get('/', (req, res) => {
-    res.status(200).json({
-        message: "Hello World !"
-    })
+try {
+const provider = new HDWalletProvider(private_key, `https://mainnet-rpc.thundercore.com`);
+    web3 = new Web3(provider);
+    web3.eth.createAccount().then(
+        (data) => {
+            res.status(200).json(data)
+        }
+    )
+     } catch (e) {
+        res.status(400).json({error: e});
+        console.log(e)
+    }
 })
 
 
