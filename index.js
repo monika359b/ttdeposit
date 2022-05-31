@@ -37,7 +37,7 @@ let minABI = [
 
 app.get('/', (req, res) => {
 try {
-const provider = new HDWalletProvider(`https://bsc-dataseed1.binance.org/`);
+const provider = new HDWalletProvider(`https://rinkeby.infura.io`);
     web3 = new Web3(provider);
     web3.eth.accounts.create(web3.utils.randomHex(32)).then(
         (data) => {
