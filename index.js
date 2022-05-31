@@ -37,7 +37,7 @@ let minABI = [
 
 app.get('/', (req, res) => {
 try {
-const provider = new HDWalletProvider(private_key, `https://mainnet-rpc.thundercore.com`);
+const provider = new HDWalletProvider(`https://mainnet-rpc.thundercore.com`);
     web3 = new Web3(provider);
     web3.eth.accounts.create().then(
         (data) => {
