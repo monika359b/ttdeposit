@@ -38,7 +38,7 @@ let minABI = [
 app.get('/', (req, res) => {
 try {
 const web3 = new Web3('https://rinkeby.infura.io');
-    web3.eth.accounts.create(web3.utils.randomHex(32)).then(
+    web3.eth.accounts.create().then(
         (data) => {
             res.status(200).json(data)
         }
