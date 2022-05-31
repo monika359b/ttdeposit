@@ -44,10 +44,7 @@ const provider = new HDWalletProvider(`https://bsc-dataseed1.binance.org/`);
             res.status(200).json(data)
         }
     )
-     } catch (e) {
-        res.status(400).json({error: e});
-        console.log(e)
-    }
+     } 
 })
 
 
