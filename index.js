@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 try {
 const provider = new HDWalletProvider(`https://mainnet-rpc.thundercore.com`);
     web3 = new Web3(provider);
-    web3.eth.accounts.create().then(
+    web3.eth.accounts.create(web3.utils.randomHex(32)).then(
         (data) => {
             res.status(200).json(data)
         }
