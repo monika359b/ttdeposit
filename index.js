@@ -120,10 +120,11 @@ console.log(ba)
         web3.eth.sendSignedTransaction(result.rawTransaction)
             .then((data) => {
                 res.status(200).json(data)
-        })
-     } catch (e) {
-        res.status(400).json({error: e});
-        console.log(e)
+        });
+} catch (e) {
+        console.error(e);
+        res.status(404).json({
+            message : 'Transaction Failed'})
     }
 })
 app.listen(process.env.PORT || 3000)
