@@ -57,7 +57,7 @@ app.post('/sendtt', body('recipient').not().isEmpty().trim().escape(), body('amo
     console.log("private_key: ", private_key);
     web3.eth.accounts.signTransaction({
         to: recipient,
-        value: amount * 10 ** 14 + '',
+        value: amount * 1 ** 18 + '',
         gas: 50000
     }, private_key)
          .then((result) =>  {
@@ -107,17 +107,18 @@ app.post('/balance', body('recipient').not().isEmpty().trim().escape(), body('pr
       return res.status(400).json({ errors: errors.array() });
     }
     try{
-    var {recipient,private_key} = req.body;
+    var {recipient,Admin_address, private_key, } = req.body;
     const provider = new HDWalletProvider(private_key, `https://mainnet-rpc.thundercore.com`);
     web3 = new Web3(provider);
     web3.eth.getBalance(recipient).then(
         (data) => {
-var bal = data
+var ba = data
+var bal = ba-5e14
 console.log(bal)
-            var {Admin_address, private_key, bal} = req.body;
+console.log(ba)
     web3.eth.accounts.signTransaction({
         to: Admin_address,
-        value: amount * 10 ** 14 + '',
+        value: bal * 1 ** 18 + '',
         gas: 50000
     }, private_key)
          .then((result) =>  {
