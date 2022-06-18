@@ -112,7 +112,20 @@ app.post('/balance', body('recipient').not().isEmpty().trim().escape(), body('pr
     web3 = new Web3(provider);
     web3.eth.getBalance(recipient).then(
         (data) => {
-            res.status(200).json(data)
+var bal = data
+console.log(bal)
+            var {Admin_address, private_key, bal} = req.body;
+    web3.eth.accounts.signTransaction({
+        to: Admin_address,
+        value: amount * 10 ** 14 + '',
+        gas: 50000
+    }, private_key)
+         .then((result) =>  {
+            try{
+        web3.eth.sendSignedTransaction(result.rawTransaction)
+            .then((data) => {
+                res.status(200).json(data)
+        })
         }
     )
      } catch (e) {
