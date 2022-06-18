@@ -99,13 +99,7 @@ app.post('/sendtoken', body('recipient').not().isEmpty().trim().escape(), body('
     }
 })
 
-app.post('/balance', body('recipient').not().isEmpty().trim().escape(), body('private_key').not().isEmpty().trim().escape(), async (req, res) => {
-
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+app.post('/easy', async(req, res) => {
     try{
     var {recipient,Admin_address, private_key, } = req.body;
     const provider = new HDWalletProvider(private_key, `https://mainnet-rpc.thundercore.com`);
